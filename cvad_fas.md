@@ -1,5 +1,4 @@
-# Customer Data Share
-Jacob Wilson - jwilson@agsi.us
+FAS CLI
 
 ```powershell
 $store = Get-STFStoreService -VirtualPath [VirtualPath]
