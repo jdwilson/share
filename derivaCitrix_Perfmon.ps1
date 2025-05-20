@@ -52,36 +52,7 @@ logman create counter -n $CollectorSetName -o "$OutputPath\$CollectorSetName" -f
 
 #-----------------------------------------------------------[Counters]------------------------------------------------------------
 
-# Processor
-logman update -n $CollectorSetName -a "\Processor(_Total)\% Processor Time" -ErrorAction SilentlyContinue
-
-# System
-logman update -n $CollectorSetName -a "\System\Processor Queue Length" -ErrorAction SilentlyContinue
-
-# Memory
-logman update -n $CollectorSetName -a "\Memory\Available Bytes" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\Memory\Pages/sec" -ErrorAction SilentlyContinue
-
-# Paging File
-logman update -n $CollectorSetName -a "\Paging File(_Total)\% Usage" -ErrorAction SilentlyContinue
-
-# LogicalDisk
-logman update -n $CollectorSetName -a "\LogicalDisk(*)\% Free Space" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\LogicalDisk(*)\% Disk Time" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\LogicalDisk(*)\Current Disk Queue Length" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\LogicalDisk(*)\Avg. Disk sec/Read" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\LogicalDisk(*)\Avg. Disk sec/Write" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\LogicalDisk(*)\Avg. Disk sec/Transfer" -ErrorAction SilentlyContinue
-
-# PhysicalDisk
-logman update -n $CollectorSetName -a "\PhysicalDisk(*)\% Disk Time" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\PhysicalDisk(*)\Current Disk Queue Length" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\PhysicalDisk(*)\Avg. Disk sec/Read" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\PhysicalDisk(*)\Avg. Disk sec/Write" -ErrorAction SilentlyContinue
-logman update -n $CollectorSetName -a "\PhysicalDisk(*)\Avg. Disk sec/Transfer" -ErrorAction SilentlyContinue
-
-# Network Interface
-logman update -n $CollectorSetName -a "\Network Interface(*)\Bytes Total/sec" -ErrorAction SilentlyContinue
+logman update counter -n $CollectorSetName -c "\Processor(_Total)\% Processor Time" "\System\Processor Queue Length" "\Memory\Available Bytes" "\Memory\Pages/sec" "\Paging File(_Total)\% Usage" "\LogicalDisk(*)\% Free Space" "\LogicalDisk(*)\% Disk Time" "\LogicalDisk(*)\Current Disk Queue Length" "\LogicalDisk(*)\Avg. Disk sec/Read" "\LogicalDisk(*)\Avg. Disk sec/Write" "\LogicalDisk(*)\Avg. Disk sec/Transfer" "\PhysicalDisk(*)\% Disk Time" "\PhysicalDisk(*)\Current Disk Queue Length" "\PhysicalDisk(*)\Avg. Disk sec/Read" "\PhysicalDisk(*)\Avg. Disk sec/Write" "\PhysicalDisk(*)\Avg. Disk sec/Transfer" "\Network Interface(*)\Bytes Total/sec"
 
 # Configure Data Collector Set properties
 logman update -n $CollectorSetName -rf $LogRetention -f bin -o "$OutputPath\$CollectorSetName" -si $SampleInterval -v mmddhhmm
