@@ -45,14 +45,31 @@ if (-not (Test-Path -Path $OutputPath)) {
 }
 
 # Delete existing collector set with the same name if it exists
-logman delete -n $CollectorSetName -ErrorAction SilentlyContinue
+logman delete -n $CollectorSetName
 
 # Create a new Data Collector Set using logman
 logman create counter -n $CollectorSetName -o "$OutputPath\$CollectorSetName" -f $LogFileFormat -si $SampleInterval -v mmddhhmm
 
 #-----------------------------------------------------------[Counters]------------------------------------------------------------
 
-logman update counter -n $CollectorSetName -c "\Processor(_Total)\% Processor Time" "\System\Processor Queue Length" "\Memory\Available Bytes" "\Memory\Pages/sec" "\Paging File(_Total)\% Usage" "\LogicalDisk(*)\% Free Space" "\LogicalDisk(*)\% Disk Time" "\LogicalDisk(*)\Current Disk Queue Length" "\LogicalDisk(*)\Avg. Disk sec/Read" "\LogicalDisk(*)\Avg. Disk sec/Write" "\LogicalDisk(*)\Avg. Disk sec/Transfer" "\PhysicalDisk(*)\% Disk Time" "\PhysicalDisk(*)\Current Disk Queue Length" "\PhysicalDisk(*)\Avg. Disk sec/Read" "\PhysicalDisk(*)\Avg. Disk sec/Write" "\PhysicalDisk(*)\Avg. Disk sec/Transfer" "\Network Interface(*)\Bytes Total/sec"
+logman update counter -n $CollectorSetName -c `
+    "\Processor(_Total)\% Processor Time" `
+    "\System\Processor Queue Length" `
+    "\Memory\Available Bytes" `
+    "\Memory\Pages/sec" `
+    "\Paging File(_Total)\% Usage" `
+    "\LogicalDisk(*)\% Free Space" `
+    "\LogicalDisk(*)\% Disk Time" `
+    "\LogicalDisk(*)\Current Disk Queue Length" `
+    "\LogicalDisk(*)\Avg. Disk sec/Read" `
+    "\LogicalDisk(*)\Avg. Disk sec/Write" `
+    "\LogicalDisk(*)\Avg. Disk sec/Transfer" `
+    "\PhysicalDisk(*)\% Disk Time" `
+    "\PhysicalDisk(*)\Current Disk Queue Length" `
+    "\PhysicalDisk(*)\Avg. Disk sec/Read" `
+    "\PhysicalDisk(*)\Avg. Disk sec/Write" `
+    "\PhysicalDisk(*)\Avg. Disk sec/Transfer" `
+    "\Network Interface(*)\Bytes Total/sec"
 
 # Configure Data Collector Set properties
 logman update -n $CollectorSetName -rf $LogRetention -f bin -o "$OutputPath\$CollectorSetName" -si $SampleInterval -v mmddhhmm
