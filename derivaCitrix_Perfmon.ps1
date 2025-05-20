@@ -32,7 +32,7 @@
 
 # Configuration settings for the data collector set
 $CollectorSetName = "Citrix_Perfmon_CollectorSet"  # Name of the data collector set
-$OutputPath = "$env:USERPROFILE\PerfLogs\$CollectorSetName"  # Where logs will be stored
+$OutputPath = "C:\PerfLogs\$CollectorSetName"  # Where logs will be stored
 $SampleInterval = 5  # Sampling interval in seconds
 $LogFileFormat = "bin"  # Binary format for performance logs
 $LogRetention = "24:00:00"  # Retain logs for 24 hours
